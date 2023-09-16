@@ -16,5 +16,6 @@ public class userLoginEntity {
 	private boolean checkbox;
 	@Column(name = "create_dt")
     private String createDt;
+
 	
 }

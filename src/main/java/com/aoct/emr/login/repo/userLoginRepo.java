@@ -12,4 +12,5 @@ public interface userLoginRepo extends JpaRepository<userLoginEntity,Long>{
 	
 	List<userLoginEntity> findByUsername(String username);
 
+
 }
