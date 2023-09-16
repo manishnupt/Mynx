@@ -10,6 +10,6 @@ import com.aoct.emr.login.entity.userLoginEntity;
 @Repository
 public interface userLoginRepo extends JpaRepository<userLoginEntity,Long>{
 	
-	List<userLoginEntity> findByEmail(String email);
+	List<userLoginEntity> findByUsername(String username);
 
 }

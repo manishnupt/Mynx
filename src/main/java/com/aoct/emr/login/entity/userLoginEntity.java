@@ -10,8 +10,11 @@ public class userLoginEntity {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
-	private String email;
-	private String pwd;
+	private String username;
+	private String password;
 	private String role;
+	private boolean checkbox;
+	@Column(name = "create_dt")
+    private String createDt;
 	
 }
