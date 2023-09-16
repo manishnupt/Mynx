@@ -47,7 +47,7 @@ public class LoginController {
         return response;
     }
 	
-	@RequestMapping("/user")
+	@RequestMapping("/login")
     public userLoginEntity getUserDetailsAfterLogin(Authentication authentication) {
         List<userLoginEntity> customers = userLoginRepository.findByUsername(authentication.getName());
         if (customers.size() > 0) {
