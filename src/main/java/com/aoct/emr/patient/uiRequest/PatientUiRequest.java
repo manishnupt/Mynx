@@ -92,4 +92,6 @@ public class PatientUiRequest {
     private String preferredModeOfCommunication;
 
     private Long PatientId;
+
+    private boolean nkda;
 }

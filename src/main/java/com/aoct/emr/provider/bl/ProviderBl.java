@@ -126,10 +126,13 @@ public class ProviderBl implements Serializable {
 
 		}
 
-		if(days!=null){
+	if(days!=null){
 		List<LocalDate> datesInRange=ProviderWorkingScheduleHelper.generateDatesInRange(startDate,endDate,days);
 		scheduleRequest.setWorkingDays(datesInRange);
 	}
+
+
+
 
 
 

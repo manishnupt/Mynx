@@ -1,6 +1,8 @@
 package com.aoct.emr.patient.service;
 
+
 import com.aoct.emr.patient.entity.PatientEntity;
+
 import com.aoct.emr.patient.repository.PatientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +13,8 @@ import java.util.List;
 @Service
 public class PatientService {
     @Autowired
-
     PatientRepo patientRepo;
+
 
 
 
@@ -73,4 +75,6 @@ public class PatientService {
         return updatedPatient != null;
 
     }
+
+
 }

@@ -50,5 +50,7 @@ public class PatientUiResponse {
     private boolean selfResponsibleflag;
     private List<AppointmentUiResponse> appointments;
 
+    private boolean nkda;
+
 //    private List<AttorneyUiResponse> attorney=new ArrayList<AttorneyUiResponse>();
 }

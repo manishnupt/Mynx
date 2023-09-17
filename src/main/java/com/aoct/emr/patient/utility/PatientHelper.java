@@ -83,6 +83,8 @@ public class PatientHelper {
 
         p.setOutStandingBalance(req.getOutStandingBalance());
 
+        p.setNkda(req.isNkda());
+
 
 
         //byte[] convertImagetoByteArray = ImageHelper.convertImagetoByteArray(req.getProfileImage());
@@ -285,6 +287,7 @@ public class PatientHelper {
 
         uiResponse.setSelfResponsibleflag(p.isSelfResponsibleFlag());
 
+        uiResponse.setNkda(p.isNkda());
 
 
 

@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class ProviderWorkingScheduleResponse {
+    private Long scheduleId;
     private String title;
     private LocalDate workingDay;
     private String startTime;

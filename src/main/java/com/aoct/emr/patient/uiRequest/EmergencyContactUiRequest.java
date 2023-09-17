@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmergencyContactUiRequest {
-    private Long patientId = 0L;;
+    private Long patientId = 0L;
     private String firstName;
     private String lastName;
     private String relation;

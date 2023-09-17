@@ -80,6 +80,8 @@ public class PatientEntity {
 
     private double outStandingBalance;
 
+    private boolean nkda;
+
     @Column(columnDefinition = "bytea")
     private byte[] profileImage;
 
@@ -101,6 +103,7 @@ public class PatientEntity {
     @JoinColumn(name = "patient_id", referencedColumnName = "patientId")
 
     private List<EmergencyContact> emergencyContact;
+
 
 
 //    @OneToMany(cascade = CascadeType.ALL)

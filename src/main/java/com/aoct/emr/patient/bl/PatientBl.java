@@ -2,16 +2,30 @@ package com.aoct.emr.patient.bl;
 
 import com.aoct.emr.appointment.UiResponse.AppointmentUiResponse;
 import com.aoct.emr.appointment.bl.AppointmentBl;
-import com.aoct.emr.appointment.service.AppointmentService;
+import com.aoct.emr.patient.entity.Allergy;
 import com.aoct.emr.patient.entity.PatientEntity;
+import com.aoct.emr.patient.entity.PatientVitals;
+import com.aoct.emr.patient.service.AllergyService;
 import com.aoct.emr.patient.service.PatientService;
+import com.aoct.emr.patient.service.PatientVitalsService;
+import com.aoct.emr.patient.uiRequest.AllergyUiRequest;
 import com.aoct.emr.patient.uiRequest.PatientUiRequest;
+import com.aoct.emr.patient.uiRequest.PatientVitalsUiRequest;
+import com.aoct.emr.patient.uiResponse.AllergyUiResponse;
 import com.aoct.emr.patient.uiResponse.PatientUiResponse;
+import com.aoct.emr.patient.uiResponse.PatientVitalsUiResponse;
+import com.aoct.emr.patient.utility.AllergyHelper;
 import com.aoct.emr.patient.utility.PatientHelper;
+import com.aoct.emr.patient.utility.PatientVitalsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class PatientBl {
@@ -22,6 +36,16 @@ public class PatientBl {
 
     @Autowired
     AppointmentBl appointmentBl;
+
+    @Autowired
+    AllergyService allergyService;
+
+    @Autowired
+    PatientVitalsService patientVitalsService;
+
+
+
+
 
 //    @Autowired
 //    ReadJsonFileService jsonService;
@@ -91,6 +115,57 @@ public class PatientBl {
 
     public void savePatientPicture(){
 
+
+
+    }
+
+    public Long addAllergy(AllergyUiRequest allergyUiRequest) {
+        Allergy a= AllergyHelper.convertAllergyUiRequest(allergyUiRequest);
+
+        Long patientAllergyId=allergyService.addAllergy(a);
+        return patientAllergyId;
+    }
+
+    public List<AllergyUiResponse> getPatientAllergy(Long patientId) {
+        List<Allergy> allergyList=allergyService.getPatientAllergy(patientId);
+        List<AllergyUiResponse> responses=AllergyHelper.convertAllergyListUiResponse(allergyList);
+        return responses;
+    }
+
+    public Long addVitalsForPatient(PatientVitalsUiRequest patientVitalsUiRequest) {
+
+        // String bmi=PatientVitalsHelper.bmiCalculator(patientVitalsUiRequest.getHeight(),patientVitalsUiRequest.getWeight());
+        // patientVitalsUiRequest.setBmi(bmi);
+
+        PatientVitals v= PatientVitalsHelper.convertPatientVitalsUiRequest(patientVitalsUiRequest);
+
+        Long vitalsId=patientVitalsService.addVitalsForPatient(v);
+        return vitalsId;
+    }
+
+    public Map<LocalDate,PatientVitalsUiResponse> getVitalsForPatient(Long patientId) {
+        List<PatientVitals> vitalslist=patientVitalsService.getVitalsForPatient(patientId);
+        Map<LocalDate,PatientVitalsUiResponse> responses=PatientVitalsHelper.convertPatientVitalsListUiResponse(vitalslist);
+
+         List<Map.Entry<LocalDate, PatientVitalsUiResponse>> entryList = new ArrayList<>(responses.entrySet());
+
+        Collections.sort(entryList, (entry1, entry2) -> entry2.getKey().compareTo(entry1.getKey()));
+
+        Map<LocalDate, PatientVitalsUiResponse> sortedMap = entryList.stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+
+        return sortedMap;
+
+    }
+
+    public Map<Integer, String> getAllAllergy() {
+        Map<Integer,String> hm=new HashMap<>();
+        hm.put(1,"Penicillin");
+        hm.put(2,"Pollen");
+        hm.put(3,"Sand");
+        hm.put(4,"FS Shampoo");
+        return hm;
 
 
     }
