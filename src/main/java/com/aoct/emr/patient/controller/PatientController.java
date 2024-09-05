@@ -76,5 +76,6 @@ public class PatientController {
 	public Map<Integer,String> getAllAllergy(){
 		return  bl.getAllAllergy();
 	}
+	
 
 }
